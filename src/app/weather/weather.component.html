@@ -1,0 +1,84 @@
+<div class="weather-container">
+    <!-- حقل الإدخال -->
+    <div class="input-container">
+      <input
+        type="text"
+        [(ngModel)]="city"
+        (input)="onCityInputChange($event)"
+        placeholder="Enter city"
+        class="city-input"
+      />
+      <button (click)="getWeather()" class="get-weather-btn">Get Weather</button>
+      <button (click)="clearCity()" class="clear-btn">Clear</button>
+    </div>
+  
+    <!-- عرض مؤشر التحميل -->
+    <div *ngIf="isLoading" class="loading-spinner-container">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+  
+    <!-- عرض قائمة الاقتراحات -->
+    <div *ngIf="filteredCities.length > 0" class="suggestions-container">
+      <ul class="suggestions-list">
+        <li *ngFor="let city of filteredCities" (click)="selectCity(city.name)">
+          {{ city.name }}
+        </li>
+      </ul>
+    </div>
+  
+    <!-- عرض بيانات الطقس -->
+    <div *ngIf="weatherData" class="weather-info-container">
+      <h2 class="city-name">{{ weatherData.name }} Weather</h2>
+      <p class="date-time">
+        <span>Date: {{ currentDate | date: 'fullDate' }}</span> |
+        <span>Time: {{ currentDate | date: 'shortTime' }}</span>
+      </p>
+  
+      <!-- صورة الطقس -->
+      <div class="weather-icon">
+        <img [src]="getWeatherIcon(weatherData.weather[0].icon)" alt="Weather icon">
+      </div>
+  
+      <!-- درجة الحرارة -->
+      <div class="temperature-container">
+        <div class="temperature">
+          <p>Temperature: <strong>{{ weatherData.main.temp }}°C</strong></p>
+          <p>Max Temp: <strong>{{ weatherData.main.temp_max }}°C</strong></p>
+          <p>Min Temp: <strong>{{ weatherData.main.temp_min }}°C</strong></p>
+        </div>
+  
+        <div class="additional-info">
+          <p>Humidity: <strong>{{ weatherData.main.humidity }}%</strong></p>
+          <p>Pressure: <strong>{{ weatherData.main.pressure }} hPa</strong></p>
+          <p>Wind Speed: <strong>{{ weatherData.wind.speed }} m/s</strong></p>
+        </div>
+      </div>
+  
+      <hr class="divider" />
+  
+      <!-- حالة الطقس -->
+      <div class="weather-details-container">
+        <p>Weather: <strong>{{ weatherData.weather[0].description }}</strong></p>
+        <p>Visibility: <strong>{{ weatherData.visibility / 1000 }} km</strong></p>
+        <p>Cloudiness: <strong>{{ weatherData.clouds.all }}%</strong></p>
+      </div>
+  
+      <hr class="divider" />
+  
+      <!-- المزيد من التفاصيل -->
+      <div class="extra-info-container">
+        <p>Sunrise: {{ weatherData.sys.sunrise * 1000 | date: 'shortTime' }} (local time)</p>
+        <p>Sunset: {{ weatherData.sys.sunset * 1000 | date: 'shortTime' }} (local time)</p>
+      </div>
+  
+      <!-- عرض التوقعات الأسبوعية -->
+     
+    </div>
+  
+    <!-- عرض رسالة الخطأ -->
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

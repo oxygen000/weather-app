@@ -1,0 +1,260 @@
+.weather-container {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #2c3e50, #34495e); /* تدرج ابتدائي داكن */
+    background-size: 400% 400%; /* تدرج متحرك */
+    animation: gradientAnimation 60s ease infinite; /* تدرج بطيء */
+    transition: background-color 1s ease;
+    
+
+    .input-container {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        width: 300px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        animation: fadeIn 1.5s ease forwards;
+    }
+
+    .city-input {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        outline: none;
+        transition: background-color 0.3s ease, border 0.3s ease;
+        opacity: 0;
+        animation: fadeIn 2s ease forwards;
+        animation-delay: 0.5s;
+        
+        &:focus {
+            background-color: #e6f7ff;
+            border: 2px solid #3498db;
+        }
+    }
+
+    .get-weather-btn,
+    .clear-btn {
+        padding: 10px 15px;
+        background-color: #008CBA;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        opacity: 0;
+        animation: fadeIn 2s ease forwards;
+        animation-delay: 1s;
+
+        &:hover {
+            background-color: #005f6a;
+            transform: scale(1.05);
+        }
+
+        &:active {
+            background-color: #004c53;
+        }
+    }
+
+    .loading-spinner-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 18px;
+    }
+
+    .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background: linear-gradient(135deg, #2c3e50, #34495e); /* تدرج من الأزرق الداكن والرمادي الداكن */
+        }
+        20% {
+            background: linear-gradient(135deg, #2f4f66, #3b5d7c); /* تدرج من الأزرق الداكن المتوازن */
+        }
+        40% {
+            background: linear-gradient(135deg, #3a4e69, #2c6f8f); /* تدرج من الأزرق الداكن الفاتح */
+        }
+        60% {
+            background: linear-gradient(135deg, #4e5b6e, #364f6b); /* تدرج من الأزرق الرمادي الداكن */
+        }
+        80% {
+            background: linear-gradient(135deg, #2a3d48, #415a77); /* تدرج من الأزرق الداكن والرمادي */
+        }
+        100% {
+            background: linear-gradient(135deg, #2c3e50, #34495e); /* العودة إلى التدرج الأول */
+        }
+    }
+    
+    
+    
+
+    /* إضافة تأثيرات عند تحميل العناصر */
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    .suggestions-container {
+        position: absolute;
+        top: 60px;
+        width: 300px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        z-index: 10;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .suggestions-list {
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+    }
+
+    li {
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+            background-color: #575757;
+            color: #fff;
+        }
+    }
+
+    .weather-info-container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 800px;
+        width: 100%;
+        margin: 20px 0;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        animation: fadeIn 1.5s ease forwards;
+    }
+
+    .city-name {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .date-time {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .weather-icon {
+        margin: 20px 0;
+
+        img {
+            width: 100px;
+            height: 100px;
+            animation: bounce 1s infinite;
+        }
+    }
+
+    .temperature-container {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+
+        .temperature {
+            p {
+                margin: 5px 0;
+                font-size: 1.5rem;
+            }
+        }
+
+        .additional-info {
+            p {
+                margin: 5px 0;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .weather-details-container,
+    .extra-info-container {
+        margin-top: 20px;
+
+        p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+    }
+
+    .divider {
+        margin: 20px 0;
+        border: 0;
+        border-top: 1px solid #fff;
+    }
+
+    .forecast-container {
+        margin-top: 30px;
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .forecast-day {
+            margin-bottom: 20px;
+
+            p {
+                margin: 5px 0;
+                font-size: 1rem;
+            }
+
+            .forecast-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+
+    .error-message {
+        color: #f44336;
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* تأثير الأنيميشن الخاص بالاهتزاز */
+    @keyframes bounce {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
+}
