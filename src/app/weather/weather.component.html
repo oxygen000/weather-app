@@ -1,5 +1,4 @@
 <div class="weather-container">
-    <!-- حقل الإدخال -->
     <div class="input-container">
       <input
         type="text"
@@ -12,13 +11,11 @@
       <button (click)="clearCity()" class="clear-btn">Clear</button>
     </div>
   
-    <!-- عرض مؤشر التحميل -->
     <div *ngIf="isLoading" class="loading-spinner-container">
       <div class="spinner"></div>
       <p>Loading...</p>
     </div>
   
-    <!-- عرض قائمة الاقتراحات -->
     <div *ngIf="filteredCities.length > 0" class="suggestions-container">
       <ul class="suggestions-list">
         <li *ngFor="let city of filteredCities" (click)="selectCity(city.name)">
@@ -27,7 +24,6 @@
       </ul>
     </div>
   
-    <!-- عرض بيانات الطقس -->
     <div *ngIf="weatherData" class="weather-info-container">
       <h2 class="city-name">{{ weatherData.name }} Weather</h2>
       <p class="date-time">
@@ -35,12 +31,10 @@
         <span>Time: {{ currentDate | date: 'shortTime' }}</span>
       </p>
   
-      <!-- صورة الطقس -->
       <div class="weather-icon">
         <img [src]="getWeatherIcon(weatherData.weather[0].icon)" alt="Weather icon">
       </div>
   
-      <!-- درجة الحرارة -->
       <div class="temperature-container">
         <div class="temperature">
           <p>Temperature: <strong>{{ weatherData.main.temp }}°C</strong></p>
@@ -57,7 +51,6 @@
   
       <hr class="divider" />
   
-      <!-- حالة الطقس -->
       <div class="weather-details-container">
         <p>Weather: <strong>{{ weatherData.weather[0].description }}</strong></p>
         <p>Visibility: <strong>{{ weatherData.visibility / 1000 }} km</strong></p>
@@ -66,17 +59,14 @@
   
       <hr class="divider" />
   
-      <!-- المزيد من التفاصيل -->
       <div class="extra-info-container">
         <p>Sunrise: {{ weatherData.sys.sunrise * 1000 | date: 'shortTime' }} (local time)</p>
         <p>Sunset: {{ weatherData.sys.sunset * 1000 | date: 'shortTime' }} (local time)</p>
       </div>
   
-      <!-- عرض التوقعات الأسبوعية -->
      
     </div>
   
-    <!-- عرض رسالة الخطأ -->
     <div *ngIf="errorMessage" class="error-message">
       <p>{{ errorMessage }}</p>
     </div>

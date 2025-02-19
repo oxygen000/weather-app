@@ -7,17 +7,16 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class WeatherService {
-  private apiKey: string = '7cfcf11a07bf64e0c98602c25e577a91'; // API key
+  private apiKey: string = '7cfcf11a07bf64e0c98602c25e577a91'; 
   private baseUrl: string = 'http://api.openweathermap.org/data/2.5/';
 
   constructor(private http: HttpClient) {}
 
-  // Method to get current weather
   getWeather(city: string): Observable<any> {
     const params = new HttpParams()
       .set('q', city)
       .set('appid', this.apiKey)
-      .set('units', 'metric'); // Units in Celsius
+      .set('units', 'metric'); 
 
     return this.http
       .get<any>(`${this.baseUrl}weather`, { params })
@@ -29,12 +28,11 @@ export class WeatherService {
       );
   }
 
-  // Method to get city suggestions
   getCitySuggestions(query: string): Observable<any[]> {
     const params = new HttpParams()
       .set('q', query)
       .set('appid', this.apiKey)
-      .set('limit', '5'); // Limit suggestions to 5 cities
+      .set('limit', '5'); 
 
     return this.http
       .get<any[]>(`${this.baseUrl}find`, { params })
@@ -46,12 +44,11 @@ export class WeatherService {
       );
   }
 
-  // Method to get the weather forecast for a specific city
   getForecast(city: string): Observable<any> {
     const params = new HttpParams()
       .set('q', city)
       .set('appid', this.apiKey)
-      .set('units', 'metric'); // Units in Celsius
+      .set('units', 'metric'); 
 
     return this.http
       .get<any>(`${this.baseUrl}forecast`, { params })

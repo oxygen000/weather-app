@@ -7,9 +7,9 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background: linear-gradient(135deg, #2c3e50, #34495e); /* تدرج ابتدائي داكن */
-    background-size: 400% 400%; /* تدرج متحرك */
-    animation: gradientAnimation 60s ease infinite; /* تدرج بطيء */
+    background: linear-gradient(135deg, #2c3e50, #34495e); 
+    background-size: 400% 400%; 
+    animation: gradientAnimation 60s ease infinite;
     transition: background-color 1s ease;
     
 
@@ -96,29 +96,28 @@
 
     @keyframes gradientAnimation {
         0% {
-            background: linear-gradient(135deg, #2c3e50, #34495e); /* تدرج من الأزرق الداكن والرمادي الداكن */
+            background: linear-gradient(135deg, #2c3e50, #34495e); 
         }
         20% {
-            background: linear-gradient(135deg, #2f4f66, #3b5d7c); /* تدرج من الأزرق الداكن المتوازن */
+            background: linear-gradient(135deg, #2f4f66, #3b5d7c); 
         }
         40% {
-            background: linear-gradient(135deg, #3a4e69, #2c6f8f); /* تدرج من الأزرق الداكن الفاتح */
+            background: linear-gradient(135deg, #3a4e69, #2c6f8f); 
         }
         60% {
-            background: linear-gradient(135deg, #4e5b6e, #364f6b); /* تدرج من الأزرق الرمادي الداكن */
+            background: linear-gradient(135deg, #4e5b6e, #364f6b); 
         }
         80% {
-            background: linear-gradient(135deg, #2a3d48, #415a77); /* تدرج من الأزرق الداكن والرمادي */
+            background: linear-gradient(135deg, #2a3d48, #415a77); 
         }
         100% {
-            background: linear-gradient(135deg, #2c3e50, #34495e); /* العودة إلى التدرج الأول */
+            background: linear-gradient(135deg, #2c3e50, #34495e); 
         }
     }
     
     
     
 
-    /* إضافة تأثيرات عند تحميل العناصر */
     @keyframes fadeIn {
         0% { opacity: 0; }
         100% { opacity: 1; }
@@ -251,7 +250,6 @@
         font-weight: bold;
     }
 
-    /* تأثير الأنيميشن الخاص بالاهتزاز */
     @keyframes bounce {
         0% { transform: translateY(0); }
         50% { transform: translateY(-10px); }
